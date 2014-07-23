@@ -1,0 +1,13 @@
+{
+  "name": "demo1",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "jade": "*",
+    "markdown-js":">=0.0.1"
+  }
+}
