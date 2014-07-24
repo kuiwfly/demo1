@@ -11,9 +11,10 @@ var express = require('express')
 var markdown = require('markdown-js');
 var fs = require('fs');
 var app = express();
+var circle = require('./node_modules/module/circle.js')
 
 // all environments
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8888);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -41,6 +42,7 @@ app.get('/users', user.list);
 app.get('/blogs/:title.html',function(req,res){
 	var path = ['blog/',req.params.title,'.md'].join('');
 	console.log(path);
+	console.log('area:'+circle.area(2));
 	res.render(path,{layout:false});
 	}
 );
