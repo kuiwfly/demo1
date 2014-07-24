@@ -42,7 +42,10 @@ app.get('/users', user.list);
 app.get('/blogs/:title.html',function(req,res){
 	var path = ['blog/',req.params.title,'.md'].join('');
 	console.log(path);
-	console.log('area:'+circle.area(2));
+//	console.log('area:'+circle.area(2));
+//	console.log('name:'+circle.name);
+	var tmp = new circle('WK',26);
+	console.log('name:'+tmp.name);
 	res.render(path,{layout:false});
 	}
 );
