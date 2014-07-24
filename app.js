@@ -12,7 +12,7 @@ var markdown = require('markdown-js');
 var fs = require('fs');
 var app = express();
 var circle = require('./node_modules/module/circle.js')
-
+var SocketServer = require('./node_modules/module/websocketserver.js');
 // all environments
 app.set('port', process.env.PORT || 8888);
 app.set('views', __dirname + '/views');
@@ -23,7 +23,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
+ 	
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -58,7 +58,8 @@ app.engine('md',function(path,options,fn){
 	);
 	}
 );//*/
-
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+var ioserver = new SocketServer(server);
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
