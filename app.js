@@ -1,6 +1,9 @@
 
 /**
  * Module dependencies.
+ * <% code %> javascript code
+ * <% =title%> replace string
+ * <% -html%> display original html
  */
 
 var express = require('express')
