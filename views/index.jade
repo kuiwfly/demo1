@@ -3,11 +3,13 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  link(rel="stylesheet", href="./jquery-ui-1.11.0/jquery-ui.css")
   script(src='jquery-2.1.1.js')
   script(src='./jquery-ui-1.11.0/jquery-ui.js')
   script(src="login.js")
   
-  div#digLogin(title="Please input username and password")
+  div#diag-login(title="Please input username and password")
+    p test
     form
       fieldset
         p UserName:
@@ -16,7 +18,8 @@ block content
           input#txtPwd(type="password")
         p
           input(type="submit",tabindex="-1",style="position:absolute; top:-1000px")
-
+  div#dialog-message(title="basic dialog")
+    p hello world
   ul
     li
         a(href='/markdown.html') Markdown Demo page
