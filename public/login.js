@@ -1,18 +1,35 @@
 /**
  * New node file
  */
-var txtUserName, txtPwd, btnLogin;
-
+var diagLogin,formLogin;
+function Login(){
+	alert("login");
+	diagLogin.dialog("close");
+}
 $(function(){
-	txtUserName = $('#txtUserName');
-	txtPwd = $('#txtPwd');
-	btnLogin = $('#btnLogin');
-	txtUserName.val('test');
-	btnLogin.val('login');
-	alert("init");
+	diagLogin = $("#diagLogin").dialog({
+		autoOpen:false,
+		height:300,
+		width:350,
+		modal:true,
+		buttons:{
+			"Login":Login,
+			Cancel:function(){
+				diaglog.dialog("close");
+			}
+		},
+		close:function(){
+			form[0].reset();
+			allFields.removeClass("ui-state-error");
+		}
+	});
+	formLogin = diagLogin.find("form").on("submit",function(){
+		alert("submit");
+	});
+	
 	}
 );
 $(document).ready(function(){
-	alert("I am ready!");
+	
 	}
 );

@@ -6,14 +6,17 @@ block content
   script(src='jquery-2.1.1.js')
   script(src='./jquery-ui-1.11.0/jquery-ui.js')
   script(src="login.js")
-  form#login(name="login",method="get",action="/blogs/monitor.html",onsubmit="CheckUser")
-    p UserName:
-      input#txtUserName(name="txtUserName",type="text")
-    p Password:
-      input#txtPwd(name="txtPwd",type="password")
-    p 
-      input#btnLogin(name="subLogin",type="submit",value="submit")
-    
+  
+  div#digLogin(title="Please input username and password")
+    form
+      fieldset
+        p UserName:
+          input#txtUserName(type="text")
+        p Password:
+          input#txtPwd(type="password")
+        p
+          input(type="submit",tabindex="-1",style="position:absolute; top:-1000px")
+
   ul
     li
         a(href='/markdown.html') Markdown Demo page
