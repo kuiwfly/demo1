@@ -16,12 +16,12 @@ $(function(){
 		buttons:{
 			"Login":Login,
 			Cancel:function(){
-				diaglog.dialog("close");
+				diagLogin.dialog("close");
 			}
 		},
 		close:function(){
-			form[0].reset();
-			allFields.removeClass("ui-state-error");
+			formLogin[0].reset();
+			//allFields.removeClass("ui-state-error");
 		}
 	});
 	formLogin = diagLogin.find("form").on("submit",function(){
