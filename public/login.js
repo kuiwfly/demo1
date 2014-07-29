@@ -1,11 +1,32 @@
 /**
  * New node file
  */
+var socket = io.connect('http://localhost:8888');
+socket.on('connect',function(){
+	console.log("connected....");
+	}
+);
+socket.on('news',function(data){
+	console.log(data);
+	}
+);
+socket.on('result',function(data){
+	}
+);
+function login(username,password){
+	socket.emit('login','username:'+username+';password:'+password);
+}
+
 
 $(function(){
 	var diagLogin,formLogin;
-	function Login(){
-		alert("login");
+	
+	
+	function onLogin(){
+		var username = $('#txtUserName').val();
+		var password = $('#txtPwd').val();
+		alert(username+':'+password);
+		login(username,password);
 		diagLogin.dialog("close");
 	}
 	diagLogin = $("#diag-login").dialog({
@@ -14,14 +35,13 @@ $(function(){
 		width:350,
 		modal:true,
 		buttons:{
-			"Login":Login,
+			"Login":onLogin,
 			Cancel:function(){
 				diagLogin.dialog("close");
 			}
 		},
 		close:function(){
 			formLogin[0].reset();
-			//allFields.removeClass("ui-state-error");
 		}
 	});
 	formLogin = diagLogin.find("form").on("submit",function(){
