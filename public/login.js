@@ -1,32 +1,55 @@
 /**
  * New node file
  */
-var socket = io.connect('http://localhost:8888');
-socket.on('connect',function(){
-	console.log("connected....");
-	}
-);
-socket.on('news',function(data){
-	console.log(data);
-	}
-);
-socket.on('result',function(data){
-	}
-);
-function login(username,password){
-	socket.emit('login','username:'+username+';password:'+password);
-}
+
+var Client = {
+		username:null,
+		socket:null,
+		send:function(data){
+			Client.socket.send(data);
+		},
+
+		login:function(username,password){
+			var data = {command:"login",
+			            username:username,
+			            password:password
+			            };
+			
+			Client.send(data);
+		},
+		chat:function(message){
+			var data = {command:"chat",
+			            message:message};
+			Client.send(data);
+		},
+		connect:function(){
+		},
+		receive:function(data){
+		},
+		disconnect:function(){
+		},
+		
+		init:function(){
+			Client.socket = io.connect('http://localhost:8888');
+			Client.socket.on("connect",Client.connect);
+			Client.socket.on("message",Client.receive);
+			Client.socket.on("disconnect",Client.disconnect);
+		}
+
+};
+
+
 
 
 $(function(){
 	var diagLogin,formLogin;
-	
+	Client.init();
 	
 	function onLogin(){
 		var username = $('#txtUserName').val();
 		var password = $('#txtPwd').val();
 		alert(username+':'+password);
-		login(username,password);
+		Client.login(username,password);
 		diagLogin.dialog("close");
 	}
 	diagLogin = $("#diag-login").dialog({
